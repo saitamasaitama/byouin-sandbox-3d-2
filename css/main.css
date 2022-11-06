@@ -1,0 +1,9 @@
+body{
+  margin:0;
+}
+
+#Debug{
+  position:absolute;
+  left:1vw;
+  top:1vw;
+}

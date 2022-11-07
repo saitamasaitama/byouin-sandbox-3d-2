@@ -1,7 +1,7 @@
 class Scene{
   constructor(){
-    this.scene=new THREE.Scene();
-    this.renderer = new THREE.WebGLRenderer();
+	this.scene=new THREE.Scene();
+	this.renderer = new THREE.WebGLRenderer();
     const canvas=$(this.renderer.domElement);
     this.renderer.setSize( window.innerWidth, window.innerHeight );
     $("body").append(canvas);
@@ -13,6 +13,11 @@ class Scene{
     this.camera.position.z=3.5
     this.camera.rotation.x=-0.45*Math.PI
     this.scene.background=new THREE.Color(0x666666)
+    const light = new THREE.AmbientLight(0x444444, 1.0);
+    const dlight = new THREE.DirectionalLight(0xFFFFFF, 1);
+     dlight.rotation.x=0.25*Math.PI
+    this.scene.add(light);
+    this.scene.add(dlight);
   } 
      static CreateScene(){
       const result=new Scene();
@@ -33,12 +38,15 @@ function Color(x){
   return new THREE.Color(x);
 }
 
+function V3(x,y,z){
+	return new THREE.Vector3(x,y,z);
+}
 class V{
 
   constructor(x,y,z){
     this.x=x;
     this.y=y;
-    this.z=z;  
+    	this.z=z;  
   }
   
   
@@ -91,3 +99,4 @@ function GameObject(
   mesh.position.z=position.z;
   return mesh;
 }
+

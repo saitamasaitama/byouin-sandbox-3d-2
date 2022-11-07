@@ -2,8 +2,25 @@ body{
   margin:0;
 }
 
+canvas{
+	min-width:100vw;
+	min-height:100vh;
+
+}
+
 #Debug{
   position:absolute;
   left:1vw;
-  top:1vw;
+  top:10vw;
+}
+
+#Left{
+  position:absolute;
+  left:3vw;
+  bottom:3vh;
+  min-height:10vw;
+  min-width:10vw;
+  background-color: rgba(0,0,0,0.5)
+  
+
 }

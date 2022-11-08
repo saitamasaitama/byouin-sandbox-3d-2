@@ -12,8 +12,8 @@ function InputSet(){
      const y =e.changedTouches[0].pageY
      const diffx = x -cX;
      const diffy = y -cY;
-     $Scene.camera.position.x-= diffx*0.05
-     $Scene.camera.position.z-= diffy*0.05
+     $Scene.scene.rotation.z-= diffx*0.05
+     $Scene.scene.rotation.x-= diffy*0.05
      cX=x; 
      cY=y;
   });

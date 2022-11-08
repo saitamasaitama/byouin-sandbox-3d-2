@@ -28,13 +28,8 @@ const circle=Primitive.Circle(0x008866,20);
 circle.rotation.x=-0.5*Math.PI
 $Scene.add(circle)
 
-fetch("json/pref.csv.json")
-	.then(function(h){
-		alert(72)
-	})
-	.catch(function(e){
-		alert(e)
-	})
+
+
 
 InputSet()
 setInterval(function(){$Scene.Update(

@@ -65,16 +65,18 @@ function Group(){
   return new THREE.Group();
 }
 class Primitive{
-  static Sphere(color=0x888888,radius=1,w=32,h=16){
+  static Sphere(color=0x888888,radius=0.5,w=32,h=16){
   	const g = new THREE.SphereGeometry(radius,w,h);
   	const m = new THREE.MeshStandardMaterial({color:color});
   	const sphere=new THREE.Mesh(g,m)
   	return sphere;
   }
-  static Cylinder(color=0x888888,t=1,b=1,h=2,s=16){
+  static Cylinder(color=0x888888,t=0.5,b=0.5,h=2,s=16){
  	const g = new THREE.CylinderGeometry(t,b,h,s);
   	const m = new THREE.MeshStandardMaterial({color:color});
-  	return new THREE.Mesh(g,m)
+  	const result= new THREE.Mesh(g,m)
+  	result.position.y=h/2.0;
+  	return result;
   }
   
   static Circle(color=0x888888,r=1,s=16){

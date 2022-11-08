@@ -26,9 +26,34 @@ cylinder.position.x=-5
 $Scene.add(cylinder)
 const circle=Primitive.Circle(0x008866,20);
 circle.rotation.x=-0.5*Math.PI
-$Scene.add(circle)
+//$Scene.add(circle)
 
+const PrefCoordinates=[];
+for(let i=0;i<47;i++){
 
+	PrefCoordinates.push(PrefGeoMaster.features[i].geometry.coordinates)
+}
+
+const points=[];
+for(const item of PrefCoordinates[0][0][0]){
+    const lat=item[0]
+	const lon=item[1]
+	const v =Vector3.FromLatLong(lat,lon);
+	points.push(v)
+	
+	const sphere=Primitive.Sphere(0x000088,0.05,12,6)
+	sphere.position.x=v.x
+	sphere.position.y=v.y
+	sphere.position.z=v.z
+	$Scene.add(sphere)
+//	alert(lat+":"+lon)
+//	alert(v.x+":"+v.y+":"+v.z)
+//	break;
+}
+
+$Scene.add(Primitive.Line(0xFFFFFF,[
+	points
+]))
 
 
 InputSet()

@@ -58,6 +58,14 @@ class Vector3{
 		return new THREE.Vector3(0,0,length)
 	}
 	
+	static FromLatLong(lat,lon,length=10){
+		lat=THREE.MathUtils.degToRad(lat)
+		lon=THREE.MathUtils.degToRad(lon)
+		const e=new THREE.Euler(lat,lon,0)
+		
+		const v=Vector3.Forward(length);
+		return v.applyEuler(e)
+	}
 }
 
 
@@ -84,7 +92,18 @@ class Primitive{
   	const m = new THREE.MeshStandardMaterial({color:color});
   	return new THREE.Mesh(g,m)
   }
-}
+  
+  static Line(color=0x00FF00,points=[]){
+  
+    const m=new THREE.LineBasicMaterial({color:color})
+    const g =new THREE.BufferGeometry().setFromPoints(points);
+    const line=new THREE.Line(g,m);
+    return line;
+  
+  }
+  
+}//end primitive
+
 
 
 class GameObject{

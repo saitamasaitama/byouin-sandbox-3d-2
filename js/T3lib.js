@@ -27,6 +27,18 @@ class Scene{
     		return result;
     }
     
+    LookAt(x,y,z){
+    		this.camera.lookAt(x,y,z)
+    }
+    
+    Rotate(x,y,z){
+  
+    		const e =Quaternion.Euler(x,y,z);
+    		this.scene.rotation.x=e.x;
+    		this.scene.rotation.y=e.y;
+    		this.scene.rotation.z=e.z;
+    }
+    
     add(o){
     		this.scene.add(o);
     		return this;
@@ -48,6 +60,9 @@ function V3(x,y,z){
 
 class Quaternion{
 	static Euler(x,y,z){
+		x=THREE.MathUtils.degToRad(x)
+		y=THREE.MathUtils.degToRad(y)
+		z=THREE.MathUtils.degToRad(z)
 		return new THREE.Euler(x,y,z);
 	}
 }
@@ -103,6 +118,15 @@ class Primitive{
     return line;
   
   }
+  
+static LineLoop(color=0x00FF00,width=3,points=[]){
+  
+    const m=new THREE.LineBasicMaterial({color:color,width:width})
+    const g =new THREE.BufferGeometry().setFromPoints(points);
+    const line=new THREE.LineLoop(g,m);
+    return line;
+  
+  } 
   //赤道を表現
   static LineRing(color=0xFF0000,width=3,radius=30){
   
@@ -112,20 +136,25 @@ class Primitive{
     }
     const m=new THREE.LineBasicMaterial({color:color,width:width})
     const g =new THREE.BufferGeometry().setFromPoints(points);  
-   const line=new THREE.Line(g,m);
+   const line=new THREE.LineLoop(g,m);
    return line;
   }
-  static LineRingY(color=0x00FF00,width=3,radius=30){
   
+  static LineRingY(color=0x00FF00,width=8,radius=30){
+    
     const points =[];
     for(let i=0;i<60;i++){
-    		points.push(Vector3.FromLatLong(360/60*i,0,radius))
-    }
+        const v=Vector3.FromLatLong(360/60*i,0,radius)
+    		points.push(v)		
+    	}
+    	
     const m=new THREE.LineBasicMaterial({color:color,width:width})
     const g =new THREE.BufferGeometry().setFromPoints(points);  
    const line=new THREE.Line(g,m);
    return line;
+   
   } 
+ 
   
   static Octahedron(color=0xFF00FF,radius=1){
  	const m=new THREE.MeshStandardMaterial({color:color})

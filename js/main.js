@@ -43,22 +43,34 @@ for(let k=0;k<PrefCoordinates[i][j].length;k++) {
 			    const lat=item[0]
 				const lon=item[1]
 				
-				const v =Vector3.FromLatLong(lat,lon,radius);
+				const v =Vector3.FromLatLong(-lat,-lon,radius);
 				
 				points.push(v);
 			}
 			$Scene.add(Primitive.Line(0xFF0000,3,points))
-			
 		}
 	}
 }
 
-$Scene.add(Primitive.LineRing())
-$Scene.add(Primitive.LineRingY())
+//test
 
+const pts=[]
+pts.push(Vector3.FromLatLong(-30,120,radius));
+pts.push(Vector3.FromLatLong(-34,120,radius));
+pts.push(Vector3.FromLatLong(-30,130,radius));
+$Scene.add(Primitive.LineLoop( 0xFFFFFF,3,pts))
+
+
+
+$Scene.add(Primitive.LineRing(0xFF0000,3,16))
+$Scene.add(Primitive.LineRingY(0x00FF00,3,16))
+//$Scene.rotation.x =39
+//$Scene.rotation.y=139
+$Scene.LookAt(0,0,0)
+$Scene.Rotate(-45,141,0)
 InputSet()
 setInterval(function(){$Scene.Update(
  function(delta){
- 	//$Scene.rotation.y-=delta*4
+ 	
  }
 )},33)

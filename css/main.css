@@ -27,11 +27,23 @@ canvas{
   
 }
 
-#Button{
-
+.Button{
 	position:absolute;
-	bottom:1em;
-	right:1em;
-	font-size:3em;
+	top:1em;
+	font-size:2em;
 	z-index:2;
+}
+.Button.lt{
+  right:3em;
+}
+.Button.rt{
+	right:1em;
+}
+.Button.ut{
+	right:2em;
+	top:0em;
+}
+.Button.dt{
+	right:2em;
+	top:2em;
 }

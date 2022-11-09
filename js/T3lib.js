@@ -20,6 +20,7 @@ class Scene{
      	dlight.rotation.x=0.25*Math.PI
     		this.scene.add(light);
     		this.scene.add(dlight);
+    		//this.scene.rotation.y=1.0*Math.PI;
 	} 
  	static CreateScene(){
     		const result=new Scene();
@@ -51,8 +52,8 @@ class Quaternion{
 	}
 }
 class Vector3{
-	static Up(){
-		return new THREE.Vector3(0,1,0)
+	static Up(length){
+		return new THREE.Vector3(0,length,0)
 	}
 	static Forward(length=1){
 		return new THREE.Vector3(0,0,length)
@@ -61,6 +62,7 @@ class Vector3{
 	static FromLatLong(lat,lon,length=10){
 		lat=THREE.MathUtils.degToRad(lat)
 		lon=THREE.MathUtils.degToRad(lon)
+		
 		const e=new THREE.Euler(lat,lon,0)
 		
 		const v=Vector3.Forward(length);
@@ -93,15 +95,43 @@ class Primitive{
   	return new THREE.Mesh(g,m)
   }
   
-  static Line(color=0x00FF00,points=[]){
+  static Line(color=0x00FF00,width=3,points=[]){
   
-    const m=new THREE.LineBasicMaterial({color:color})
+    const m=new THREE.LineBasicMaterial({color:color,width:width})
     const g =new THREE.BufferGeometry().setFromPoints(points);
     const line=new THREE.Line(g,m);
     return line;
   
   }
+  //赤道を表現
+  static LineRing(color=0xFF0000,width=3,radius=30){
   
+    const points =[];
+    for(let i=0;i<60;i++){
+    		points.push(Vector3.FromLatLong(0,360/60*i,radius))
+    }
+    const m=new THREE.LineBasicMaterial({color:color,width:width})
+    const g =new THREE.BufferGeometry().setFromPoints(points);  
+   const line=new THREE.Line(g,m);
+   return line;
+  }
+  static LineRingY(color=0x00FF00,width=3,radius=30){
+  
+    const points =[];
+    for(let i=0;i<60;i++){
+    		points.push(Vector3.FromLatLong(360/60*i,0,radius))
+    }
+    const m=new THREE.LineBasicMaterial({color:color,width:width})
+    const g =new THREE.BufferGeometry().setFromPoints(points);  
+   const line=new THREE.Line(g,m);
+   return line;
+  } 
+  
+  static Octahedron(color=0xFF00FF,radius=1){
+ 	const m=new THREE.MeshStandardMaterial({color:color})
+    const g =new THREE.OctahedronGeometry(radius);    
+  	return new THREE.Mesh(g,m)
+  }
 }//end primitive
 
 

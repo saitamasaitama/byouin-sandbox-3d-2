@@ -3,6 +3,9 @@ body{
 }
 
 canvas{
+	position:absolute;
+	top:0;
+	left:0;
 	min-width:100vw;
 	min-height:100vh;
 
@@ -22,5 +25,13 @@ canvas{
   min-width:10vw;
   background-color: rgba(0,0,0,0.5)
   
+}
 
+#Button{
+
+	position:absolute;
+	bottom:1em;
+	right:1em;
+	font-size:3em;
+	z-index:2;
 }

@@ -17,6 +17,18 @@ function InputSet(){
      cX=x; 
      cY=y;
   });
+  
+  $("#Button").on("click",function(){
+    const e=new THREE.Euler(
+    THREE.MathUtils.degToRad(-35.4122),
+    THREE.MathUtils.degToRad(-139.4130),
+    0)
+    
+    $Scene.rotation.x=e.x
+    $Scene.rotation.y=e.y
+    alert("reset")
+  	//alert(e.x);
+  });
 }
 
 class UI{
